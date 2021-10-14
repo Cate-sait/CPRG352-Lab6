@@ -6,6 +6,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <STYLE type="text/css">
+            ul {padding-left: 10px}
+            li { display: list-item; list-style: none}
+        </STYLE>
         <title>Shopping List</title>
     </head>
     <body>
@@ -15,14 +19,14 @@
         <h1>List</h1>
         <form action="" method="POST">
             <label>Add item: </label>
-            <input type="text" name="item">
+            <input type="text" name="item" value="${item}">
             <input type="submit" value="Add">
             <input type="hidden" name="action" value="add">
         </form>
         <form action="" method="POST">
-            <c:if test="${items} != null}">
-                <ul list-style-type:none>
-                    <c:forEach items="${items}" var="item">
+            <c:if test="${itemList.size() gt 0}">
+                <ul>
+                    <c:forEach items="${itemList}" var="item">
                         <li><input type="radio" name="item" value="${item}">${item}</li>
                     </c:forEach>
                 </ul>
