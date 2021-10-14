@@ -17,14 +17,15 @@ public class ShoppingListServlet extends HttpServlet {
         
         HttpSession session = request.getSession();
         String username = (String) session.getAttribute("username");
-        String query = request.getQueryString();
-     
+        String action = (String) request.getParameter("action");
         
-        if (query != null && query.equals("logout"))
+        if (action != null && action.equals("logout"))
         {
             // invalidate the session
             session.invalidate();
             session = request.getSession();
+            response.sendRedirect("ShoppingList");
+            return;
         }
         
         if (username == null || username.equals(""))
@@ -46,16 +47,16 @@ public class ShoppingListServlet extends HttpServlet {
             throws ServletException, IOException {
         
         HttpSession session = request.getSession();
-        String username = (String) session.getAttribute("username");
+        String username = (String) request.getParameter("username");
         String action = (String) request.getParameter("action");
                 
-        /*
+        
         if (username == null || username.equals(""))
         {
             getServletContext().getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
             return;
         }
-        */
+        
         
         if(action.equals("register"))
         {
